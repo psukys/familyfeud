@@ -1,60 +1,19 @@
 
 html {
   height: 100%;
-  width: 100%;
-  
+  width: 100%;  
 }
 
 body {
-  background: -moz-linear-gradient(top, #a7cfdf 0%, #23538a 100%);
+  background: #23538a;
+/*   background: -moz-linear-gradient(top, #a7cfdf 0%, #23538a 100%);
   background: -webkit-linear-gradient(top, #a7cfdf 0%, #23538a 100%);
-  background: #7db9e8;
-  background-attachment:fixed;
-height:100%;
-overflow: auto;
-}
-
-.idc{
-  top: 0;
-  bottom: 0;
-	text-align: center;	
-}
-
-.idc .winner{
-	-webkit-animation: flash linear 1s infinite;
-	animation: flash linear 1s infinite;
-}
-
-.idc .winner {
-	display: none;
-	font-size: 65px;
-	color: #C81717;
-	text-shadow: 0 0 15px #fff, 0 0 20px #fff, 0 0 25px #fff, 0 0 30px #7d2a2a, 0 0 35px #7d2a2a, 0 0 50px #7d2a2a, 0 0 60px #7d2a2a, 0 0 100px #7d2a2a;
-}
-@-webkit-keyframes flash {
-	0% { opacity: 1; } 
-	50% { opacity: .1; } 
-	100% { opacity: 1; }
-}
-@keyframes flash {
-	0% { opacity: 1; } 
-	50% { opacity: .1; } 
-	100% { opacity: 1; }
-}
-/* Pulse class and keyframe animation */
-.pulseit{
-	-webkit-animation: pulse linear .5s infinite;
-	animation: pulse linear .5s infinite;
-}
-@-webkit-keyframes pulse {
-	0% { width:200px; } 
-	50% { width:340px; } 
-	100% { width:200px; }
-}
-@keyframes pulse {
-	0% { width:200px; } 
-	50% { width:340px; } 
-	100% { width:200px; }
+  background: linear-gradient(to bottom, #a7cfdf 0%, #23538a 100%); */
+  filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#a7cfdf', endColorstr='#23538a', GradientType=0);
+  padding: 25px;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .gameBoard .cardHolder>div,
@@ -62,7 +21,7 @@ overflow: auto;
   background: #cedbe9;
   background: -moz-linear-gradient(top, #cedbe9 0%, #aac5de 17%, #6199c7 50%, #3a84c3 51%, #419ad6 59%, #4bb8f0 71%, #3a8bc2 84%, #26558b 100%);
   background: -webkit-linear-gradient(top, #cedbe9 0%, #aac5de 17%, #6199c7 50%, #3a84c3 51%, #419ad6 59%, #4bb8f0 71%, #3a8bc2 84%, #26558b 100%);
-  background: linear-gradient(to bottom, #a7cfdf -50%, #23538a 100%);
+  background: linear-gradient(to bottom, #cedbe9 0%, #aac5de 17%, #6199c7 50%, #3a84c3 51%, #419ad6 59%, #4bb8f0 71%, #3a8bc2 84%, #26558b 100%);
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#cedbe9', endColorstr='#26558b', GradientType=0);
 }
 
@@ -73,7 +32,7 @@ overflow: auto;
   background: #7db9e8;
   background: -moz-linear-gradient(top, #7db9e8 0%, #207cca 49%, #2989d8 50%, #1e5799 100%);
   background: -webkit-linear-gradient(top, #7db9e8 0%, #207cca 49%, #2989d8 50%, #1e5799 100%);
-  background: linear-gradient(to bottom, #a7cfdf -50%, #23538a 100%);
+  background: linear-gradient(to bottom, #7db9e8 0%, #207cca 49%, #2989d8 50%, #1e5799 100%);
   filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#7db9e8', endColorstr='#1e5799', GradientType=0);
 }
 
@@ -82,29 +41,24 @@ overflow: auto;
   font-family: helvetica, sans-serif;
   color: white;
   text-shadow: 1px 1px 3px rgba(0, 0, 0, 1);
-  border: 5px solid #000000;
+  border: 5px solid #003c7b;
   text-align: center;
-  padding: 150px;
-  border-radius: 1%;
   min-width: 305px;
-  margin: auto;
-  min-height: 100%; 
-  background: url('../agulogo-trans.png') #151b6d;
-  background-size: 33px 35px;
+  /* margin: auto; */
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/40041/bgFF.svg') #0C4779;
   background-repeat: repeat;
   background-position: center center;
   -webkit-box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
   -moz-box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
-  box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
 }
 
 .gameBoard .score {
   position: absolute;
   text-align: center;
   margin: auto;
-  font-size: 45px;
-  height: 50px;
-  line-height: 50px;
+  font-size: 80px;
+  height: 100px;
+  line-height: 100px;
   width: 75px;
   padding: 20px;
   border: 2px solid white;
@@ -113,55 +67,53 @@ overflow: auto;
   box-shadow: inset 0 1px 24px 1px rgba(0, 0, 0, 0.48);
 }
 .gameBoard .score#boardScore {
-  height: 75px;
-  line-height: 75px;
+  height: 90px;
+  line-height: 90px;
   width: 125px;
-  font-size: 65px;
+  font-size: 120px;
   left: 0;
   right: 0;
   top: 20px;
 }
 
-.gameBoard .scoreHolder {
-  min-height: 50px;
-}
-
-.gameBoard #awardTeam1 {
-  position: absolute;
-  left: 10px;
+.gameBoard .score#t1 {
+  position: absolute
+  font-size: 60px;
+  width: 15%;
+  height: 7%;
+  left: 100px;
   top: 20px;
-  text-shadow: 1px 1px 3px rgb(4, 195, 243);
-  font-size: 45px;
-  backdrop-filter: blur(2px);
 }
 
-.gameBoard #awardTeam2 {
+.gameBoard .score#t2 {
   position: absolute;
-  right: 10px;
+  font-size: 60px;
+  width: 15%;
+  height: 7%;
+  right: 100px;
   top: 20px;
-  text-shadow: 1px 1px 3px rgb(4, 195, 243);
-  font-size: 45px;
-  backdrop-filter: blur(5px);
 }
-
-.gameBoard .score#team1 {
+.gameBoard .score#team1score {
   position: relative;
-  text-shadow: 0, 0, 0;
-  top: 10px;
+  font-size: 100px;
+  right: 890px;
+  height: 80px;
 }
-.gameBoard .score#team2 {
-  position: relative;
-  text-shadow: 0, 0, 0;
-  top: 10px;
+.gameBoard .score#team2score {
+  position: absolute;
+  font-size: 100px;
+  right: 200px;
+  top:150px;
+  height: 80px;
 }
 
 .gameBoard .questionHolder {
   width: 94%;
   margin: auto;
-  height: 100px;
+  height: 140px;
   line-height: 100px;
   text-align: center;
-  font-size: 30px;
+  font-size: 65px;
   color: #003c7b;
   text-shadow: initial;
   text-align: center;
@@ -183,6 +135,7 @@ overflow: auto;
 .gameBoard .colHolder {
   background: black;
   padding: 4px;
+  bottom: 10px;
 }
 .gameBoard .colHolder>div {
   display: block;
@@ -264,23 +217,6 @@ overflow: auto;
   right:0;
   bottom:45px
 }
-
-.gameBoard .miss{
-	background-color: red;
-
-  visibility: hidden;
-  display:inline-block;
-  font-size: 20px;
-  height:50px;
-  line-height:50px;
-  width:50px;
-  border:3px solid white;
-  -webkit-box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
-  -moz-box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
-  box-shadow: 0 1px 24px 1px rgba(0, 0, 0, 0.48);
-
-}
-
 .gameBoard .btnHolder .button{
   cursor: pointer;
   display:inline-block;
@@ -301,42 +237,9 @@ overflow: auto;
   border-radius: 0 50px 50px 0;
 }
 
-.diyak{
-	color: #7d2a2a;
-	left:0;
-	right:0;
-	bottom:0px;
-	text-align: center;
-	-webkit-animation: flash linear 5s infinite;
-	animation: flash linear 5s infinite;
-}
-
 @media screen and (min-width: 780px) {
   .gameBoard .colHolder>div{
     display: inline-block;
     width:50%;
   }
-}
-
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
-.modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
 }

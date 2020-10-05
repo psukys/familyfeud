@@ -3,35 +3,33 @@ var whichTeamTurn = null;
 var maxMiss = 3;
 var missPointTeam1 = 0;
 var missPointTeam2 = 0;
+var currentQ = 0;
 
 	function start_game(){	
-		play_sound('ff_open');
+		// play_sound('ff_open.mp3');
 		document.getElementById("buttonStart").disabled = true;
 			
-		var counter = 33;
+		var counter = 0;
 		var interval = setInterval(function() {
 			counter--;
-			if (counter < 5) {
-				game.document.getElementById("counter").innerHTML = counter;
+			if (counter < 3) {
 				game.document.getElementById("welcomePageInfo").style.display = "none";	
 			}
 			if (counter < 0) {
 				clearInterval(interval);
-				game.document.getElementById("idcLogo").style.width = '15%';
-				game.document.getElementById("counter").innerHTML = "BaÅŸlayalÄ±m";
+				game.document.getElementById("counter").innerHTML = "Pradžia";
 				game.document.getElementById("counter").style.display = "none";	
 				game.document.body.setAttribute("style", "background: linear-gradient(to bottom, #a7cfdf -50%, #580e12 100%);");
 				game.app.init();
 				
 			}
-		}, 1000);	
+		}, 500);	
 		
 		
 	}
 	
 	function finish_game(){
-		game.document.getElementById("idcLogo").style.width = '50%';
-		game.document.getElementById("welcomePageInfo").innerHTML = "Teşekkürler.";
+		game.document.getElementById("welcomePageInfo").innerHTML = "Pabaiga";
 		game.document.getElementById("welcomePageInfo").style.display = "";
 	}
 	
@@ -62,13 +60,12 @@ var missPointTeam2 = 0;
 	// play sound object
 	var audio = new Audio('');
 	function play_sound(sound) {
-		var audio = new Audio('sfx/'+sound);
+		audio = new Audio('sfx/'+sound);
 		audio.play();
 	}
 	
 	function pause_sound() {
-		var audio = new Audio('');
-		audio.play();
+		audio.pause();
 	}
 	
 	function printMissPoint(){
@@ -83,15 +80,6 @@ var missPointTeam2 = 0;
 	function deleteMissPoint(){
 		missPointTeam1 = 0;
 		missPointTeam2 = 0;
-		document.getElementById("misspoint1").innerHTML = missPointTeam1;
-		document.getElementById("misspoint2").innerHTML = missPointTeam2;
-		game.document.getElementById("missTeam1_1").style.visibility = "hidden";
-		game.document.getElementById("missTeam1_2").style.visibility = "hidden";
-		game.document.getElementById("missTeam1_3").style.visibility = "hidden";
-		game.document.getElementById("missTeam2_1").style.visibility = "hidden";
-		game.document.getElementById("missTeam2_2").style.visibility = "hidden";
-		game.document.getElementById("missTeam2_3").style.visibility = "hidden";
-		
 	}
 	
 	function showMissPoint(team){
@@ -103,8 +91,7 @@ var missPointTeam2 = 0;
 			if (missPointTeam2 < maxMiss) missPointTeam2++;
 			document.getElementById("misspoint2").innerHTML = missPointTeam2;
 		}	
-		printMissPoint();
-		play_sound('ff-strike');
+		play_sound('ff-strike.wav');
 	}
 	
 	function nextQuestion(){
@@ -114,19 +101,20 @@ var missPointTeam2 = 0;
 			table.deleteRow(i);
 		}
 		deleteMissPoint();
+		cleanTeams();
 		game.app.changeQuestion();
 		
 	}
 	
 	function calculatePoints(team){
 		if (team == "1"){
-			game.document.getElementById("awardTeam1").click();
+			game.document.getElementById("awardTeam1points").click();
 		}
 		else if (team == "2"){
-			game.document.getElementById("awardTeam2").click();
+			game.document.getElementById("awardTeam2points").click();
 		}
 		
-	play_sound('ff_dogru');
+	play_sound('ff_dogru.mp3');
 	}
 	
 	function GetQuestion(questionParam){
@@ -150,7 +138,7 @@ var missPointTeam2 = 0;
 				var tempBgColor = this.style.backgroundColor;
 				if(tempBgColor == ""){
 					this.setAttribute("style", "background-color: lightgreen;");
-					play_sound('ff-clang');
+					play_sound('ff-clang.wav');
 				}
 				else if(tempBgColor == "lightgreen"){
 					this.setAttribute("style", "background-color: ;");
@@ -170,6 +158,15 @@ var missPointTeam2 = 0;
 		
 	}
 	
+	function cleanTeams() {
+		game.document.getElementById("team1").style.border = "";
+		game.document.getElementById("awardTeam1").style.border = "";
+		game.document.getElementById("team2").style.border = "";
+		game.document.getElementById("awardTeam2").style.border = "";
+		document.getElementById("buttonMistakeT2").disabled = false;
+		document.getElementById("buttonMistakeT1").disabled = false;
+	}
+
 	function turnOfTeam(team){
 		whichTeamTurn = team;
 		if (team == "team1"){
@@ -229,7 +226,6 @@ var missPointTeam2 = 0;
 		if (x.style.visibility === 'hidden') {
 			x.style.visibility = 'visible';
 			game.document.getElementById("gameBoardId").style.display = "none";
-			game.document.getElementById("idcLogo").style.width = '50%';
 		} else {
 			x.style.visibility = 'hidden';
 		}
@@ -257,8 +253,8 @@ var missPointTeam2 = 0;
 	
 	function changeTeamPoint(){
 		game.teamPointChange();
-		document.getElementById("team1POINT").innerHTML = game.document.getElementById("team1").value;
-		document.getElementById("team2POINT").innerHTML = game.document.getElementById("team2").value;
+		document.getElementById("team1POINT").textContent = game.document.getElementById("team1").value;
+		document.getElementById("team2POINT").textContent = game.document.getElementById("team2").value;
 	}
 	
 	function changeTurn(){

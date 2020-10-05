@@ -1,0 +1,14 @@
+{
+    "Pabaikite sakinį: \"Skautai daugiausiai dainuoja apie ...\"": [["MEILĘ", 37], ["KARĄ/TREMTĮ/PARTIZANUS",18], ["GAMTĄ", 9], ["LAUŽĄ", 9], ["LAUŽĄ", 9], ["TĖVYNĘ", 9], ["VYNĄ/ALŲ", 6]],
+    "Dažniausiai praktikoje naudojamas skautiškas mazgas išskyrus \"tikrąjį/gerąjį\"": [["PIEMENŲ", 41], ["ŠUNMAZGIS",12], ["ŽVEJO",7], ["AUDĖJŲ",6], ["DRAUGYSTĖS",5], ["PALAPINĖS",4]],
+    "Pabaikite sakinį: \"Tik grižęs iš stovyklos aš iškart ...\"": [["EINU PRAUSTIS", 85], ["EINU MIEGOTI", 40], ["EINU VALGYTI", 17], ["IŠSIKRAUNU DAIKTUS", 14], ["EINU Į WC", 12], ["EINU SKALBTIS", 9]],
+    "Ką skautas gamina iš medžio?": [["STATINIUS", 87], ["ŠAUKŠTĄ", 64], ["MALKAS", 40], ["LAZDĄ", 29], ["BAJERIUS", 17]],
+    "Ko labiausiai pasigendi stovyklaudamas skautų stovykloje?": [["DUŠO", 26], ["MAISTO", 13], ["LOVOS", 13], ["PROGRAMOS", 9], ["WC", 8], ["MIEGO", 6], ["KONKRETAUS ŽMOGAUS", 5], ["TECHNOLOGIJŲ", 4]],
+    "Žymiausias Lietuvos skautas?": [["V. ADAMKUS", 51], ["P. JURGĖLA-JURGELEVIČIUS", 15], ["F. ŠAKALYS", 5], ["A. AVIŽIENIS", 4], ["A. SAULAITIS", 2], ["A. SMETONA", 2]],
+    "Kurio sauso medžio malkos dega geriausiai?": [["BERŽO", 59], ["PUŠIES",38], ["EGLĖS",24], ["ĄŽUOLO",9], ["UOSIO",7]],
+    "Pabaikite sakinį: \"Skautas įkurdamas stovyklavietę gamtoje pirmiausia ...\"": [["ŽVALGO TERITORIJĄ", 127],  ["ĮTEMPIA TENTĄ",46], ["UŽKURIA LAUŽĄ",32], ["STATO PALAPINĘ", 25], ["SUTVARKO TERITORIJĄ", 21]],
+    "Kokia supergalia būtų reikalingiausia skautui?": [["NEMIEGAS", 14], ["MATYMAS TAMSOJE", 9], ["TELEPORTACIJA", 9], ["UGNIES UŽDEGIMAS", 9], ["ORO VALDYMAS", 5], ["MEDIENOS PJOVIMAS", 4], ["SKRAIDYMAS", 4], ["STABDYTI LAIKĄ", 4], ["SUPER JĖGA", 4], ["NUMATYTI ATEITĮ", 2]],
+    "Pabaikite sakinį: \"Skautas niekada ... \"": [["NEPRARANDA VILTIES/NEPASIDUODA", 30], ["NEMELUOJA",13], ["NEATSISAKO PADĖTI",7], ["NESAKO NIEKADA",6], ["NEMIEGA",5], ["NEBŪNA SOTUS",4]],
+    "Tinkamiausia profesija skautams": [["VISOS", 59], ["PEDAGOGAS",47], ["MIŠKININKAS",31], ["KARININKAS",7], ["POLITIKAS",7], ["PROJEKTŲ VADOVAS",5]],
+    "Kas būtų apiplėšiama filme \"Skautiškas apiplėšimas\", jeigu tai ne kita skautų stovykla?": [["MAISTO PALAPINĖ/PARDUOTUVĖ/FABRIKAS", 85], ["INVENTORIAUS PARDUOTUVĖ",39], ["ŠAULIŲ/ATEITININKŲ STOVYKLA",28], ["PALAPINĖ",21], ["MALKINĖ",11]]
+}

@@ -1,44 +1,28 @@
-var team1 = window.opener.document.getElementById("team1NAME").value;
-var team2 = window.opener.document.getElementById("team2NAME").value;
-
 var app = {
   version: 1,
   currentQ: 0,
-  jsonFile:"js/klausimai.json",
-  board: $("<div id='gameBoardId' class='gameBoard'>"+
+  jsonFile:"https://s3-us-west-2.amazonaws.com/s.cdpn.io/40041/FF3.json",
+  board: $("<div class='gameBoard'>"+
+           
              "<!--- Scores --->"+
              "<div class='scoreHolder'>" +
-                "<div class='score' id='boardScore'>0</div>"+
-                "<div id='awardTeam1'><span id='team1name'>team1</span><div class='score' id='team1' >0</div></div>"+
-                "<div id='awardTeam2'><span id='team2name'>team2</span><div class='score' id='team2' >0</div></div>"+
-              "</div>" +
-
+               "<div class='score' id='t1'>komanda1</div>" +
+               "<div class='score' id='team1score' >0</div>"+    
+               "<div class='score' id='boardScore'>0</div>"+
+               "<div class='score' id='team2score' >0</div>"+
+               "<div class='score' id='t2'>komanda2</div>" +
+             "</div>" +
              "<!--- Question --->"+
-             "<div id='questionBar' class='questionHolder'>"+
+             "<div class='questionHolder'>"+
                "<span class='question'></span>"+
              "</div>"+
            
              "<!--- Answers --->"+
-             "<div id='answerBar' class='colHolder'>"+
+             "<div class='colHolder'>"+
                "<div class='col1'></div>"+
                "<div class='col2'></div>"+
              "</div>"+
-           
-             "<!--- Buttons --->"+
-             "<div id='buttonBar' class='btnHolder'>"+
-			   "<div id='missTeam1_3' class= 'miss'>X</div>"+
-			   "<div id='missTeam1_2' class= 'miss'>X</div>"+
-			   "<div id='missTeam1_1' class= 'miss'>X</div>"+
-               "<div id='awardTeam1points' data-team='1' class='button'>" + team1 + "</div>"+
-               "<div id='awardTeam2points' data-team='2'class='button'>" + team2 + "</div>"+
-			   "<div id='missTeam2_1' class= 'miss'>X</div>"+
-			   "<div id='missTeam2_2' class= 'miss'>X</div>"+
-			   "<div id='missTeam2_3' class= 'miss'>X</div>"+
-             "</div>"+
-           "</div>"
-		   ),
-
-	
+           "</div>"),
   // Utility functions
   shuffle: function(array){
     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -52,9 +36,10 @@ var app = {
     return array;
   },
   jsonLoaded: function(data){
-    //console.clear()
+    console.clear()
     app.allData   = data
     app.questions = Object.keys(data)
+    // app.shuffle(app.questions)
     app.makeQuestion(app.currentQ)
     $('body').append(app.board)
   },
@@ -62,7 +47,7 @@ var app = {
   makeQuestion: function(qNum){
     var qText  = app.questions[qNum]
     var qAnswr = app.allData[qText]
-		
+
     var qNum = qAnswr.length
         qNum = (qNum<8)? 8: qNum;
         qNum = (qNum % 2 != 0) ? qNum+1: qNum;
@@ -80,7 +65,7 @@ var app = {
     for (var i = 0; i < qNum; i++){
       var aLI     
       if(qAnswr[i]){
-        aLI = $("<div class='cardHolder' data-card-got='false' id='answer_" + i + "'>"+
+        aLI = $("<div class='cardHolder'>"+
                   "<div class='card'>"+
                     "<div class='front'>"+
                       "<span class='DBG'>"+(i+1)+"</span>"+
@@ -109,35 +94,28 @@ var app = {
     TweenLite.set(cardSides   , {backfaceVisibility:"hidden"});
 
     cards.data("flipped", false)
-    cards.data("gotPoint", false)
-	
+    
     function showCard(){
       var card = $('.card', this)
-      var flipped = $(card).data("flipped")	  
+      var flipped = $(card).data("flipped")
       var cardRotate = (flipped)?0:-180;
       TweenLite.to(card, 1, {rotationX:cardRotate, ease:Back.easeOut})
       flipped = !flipped
       $(card).data("flipped", flipped)
-	  
-	  app.getBoardScore(this.id)
+      app.getBoardScore()
     }
-	window.opener.GetQuestion(qText);
-	window.opener.GetAnswers(qAnswr, app.currentQ+1, app.questions.length);
     cardHolders.on('click',showCard)
   },
-  getBoardScore: function(card){
-	
-	//var gotPointsBefore = document.getElementById(card).getAttribute("data-card-got");
-	
+  getBoardScore: function(){
     var cards = app.board.find('.card')
     var boardScore = app.board.find('#boardScore')
     var currentScore = {var: boardScore.html()}
     var score = 0
     function tallyScore(){
       if($(this).data("flipped")){
-		var value = $(this).find("b").html()
-		score += parseInt(value)
-	}
+         var value = $(this).find("b").html()
+         score += parseInt(value)
+      }
     }
     $.each(cards, tallyScore)      
     TweenMax.to(currentScore, 1, {
@@ -147,27 +125,18 @@ var app = {
       },
       ease: Power3.easeOut,
     });
-	
-	//document.getElementById(card).setAttribute("data-card-got", "true"); 
-	
   },
-
   awardPoints: function(num){
     var num          = $(this).attr("data-team")
     var boardScore   = app.board.find('#boardScore')
     var currentScore = {var: parseInt(boardScore.html())}
     var team         = app.board.find("#team"+num)
-	
     var teamScore    = {var: parseInt(team.html())}
     var teamScoreUpdated = (teamScore.var + currentScore.var)
-	
-	
     TweenMax.to(teamScore, 1, {
       var: teamScoreUpdated, 
       onUpdate: function () {
         team.html(Math.round(teamScore.var));
-		window.opener.document.getElementById("team1POINT").value = document.getElementById("team1").innerHTML;
-		window.opener.document.getElementById("team2POINT").value = document.getElementById("team2").innerHTML;
       },
       ease: Power3.easeOut,
     });
@@ -179,13 +148,10 @@ var app = {
       },
       ease: Power3.easeOut,
     });
-	
-	
   },
   changeQuestion: function(){
     app.currentQ++
     app.makeQuestion(app.currentQ)
-	window.opener.GetAnswers(qAnswr, app.currentQ, currentQ);
   },
   // Inital function
   init: function(){
@@ -193,47 +159,7 @@ var app = {
     app.board.find('#newQuestion' ).on('click', app.changeQuestion)
     app.board.find('#awardTeam1points'  ).on('click', app.awardPoints)
     app.board.find('#awardTeam2points'  ).on('click', app.awardPoints)
-    app.teamNameChange();
-	  window.opener.game_window_init_done();
-
   }  
 }
-	function teamPointChange(){		
-		document.getElementById("team1").innerHTML = window.opener.document.getElementById("team1POINT").value;
-		document.getElementById("team2").innerHTML = window.opener.document.getElementById("team2POINT").value;
-	}
-
-	function teamNameChange(){
-		team1 = window.opener.document.getElementById("team1NAME").value;
-		team2 = window.opener.document.getElementById("team2NAME").value;
-		
-		document.getElementById("team1name").innerHTML = team1;
-		document.getElementById("team2name").innerHTML = team2;
-	}
-
-	function winner(){
-		var winner;
-		var team1Score = document.getElementById("team1").innerHTML;
-		var team2Score = document.getElementById("team2").innerHTML;
-		
-		if(team1Score>team2Score){
-			winner = "Laimėtojai " + team1 + "!";
-		}
-		else if(team1Score<team2Score){
-			winner = "Laimėtojai " + team2 + "!";
-		}
-		else{
-			winner = "Lygiosios!";
-		}
-		return winner;
-	}
-//app.init()
-window.onload  = function (e) {
-		window.opener.hideFirework();
-};
-//oyun kapatıldı.
-window.onbeforeunload = function (e) {
-		// notify control window
-		window.opener.gameClosed();
-};
+app.init()
 //http://www.qwizx.com/gssfx/usa/ff.htm
