@@ -193,7 +193,6 @@ var app = {
     app.board.find('#newQuestion' ).on('click', app.changeQuestion)
     app.board.find('#awardTeam1points'  ).on('click', app.awardPoints)
     app.board.find('#awardTeam2points'  ).on('click', app.awardPoints)
-    app.teamNameChange();
 	  window.opener.game_window_init_done();
 
   }  
