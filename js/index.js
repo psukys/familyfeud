@@ -10,6 +10,12 @@ var app = {
              "<div class='scoreHolder'>" +
                 "<div class='score' id='boardScore'>0</div>"+
                 "<div id='awardTeam1'><span id='team1name'>team1</span><div class='score' id='team1' >0</div></div>"+
+                "<div id='missTeam1_3' class= 'miss'>X</div>"+
+                "<div id='missTeam1_2' class= 'miss'>X</div>"+
+                "<div id='missTeam1_1' class= 'miss'>X</div>"+
+                "<div id='missTeam2_3' class= 'miss'>X</div>"+
+                "<div id='missTeam2_2' class= 'miss'>X</div>"+
+                "<div id='missTeam2_1' class= 'miss'>X</div>"+
                 "<div id='awardTeam2'><span id='team2name'>team2</span><div class='score' id='team2' >0</div></div>"+
               "</div>" +
 
@@ -26,14 +32,8 @@ var app = {
            
              "<!--- Buttons --->"+
              "<div id='buttonBar' class='btnHolder'>"+
-			   "<div id='missTeam1_3' class= 'miss'>X</div>"+
-			   "<div id='missTeam1_2' class= 'miss'>X</div>"+
-			   "<div id='missTeam1_1' class= 'miss'>X</div>"+
                "<div id='awardTeam1points' data-team='1' class='button'>" + team1 + "</div>"+
                "<div id='awardTeam2points' data-team='2'class='button'>" + team2 + "</div>"+
-			   "<div id='missTeam2_1' class= 'miss'>X</div>"+
-			   "<div id='missTeam2_2' class= 'miss'>X</div>"+
-			   "<div id='missTeam2_3' class= 'miss'>X</div>"+
              "</div>"+
            "</div>"
 		   ),
@@ -121,9 +121,10 @@ var app = {
 	  
 	  app.getBoardScore(this.id)
     }
-	window.opener.GetQuestion(qText);
-	window.opener.GetAnswers(qAnswr, app.currentQ+1, app.questions.length);
-    cardHolders.on('click',showCard)
+	  window.opener.GetQuestion(qText);
+	  window.opener.GetAnswers(qAnswr, app.currentQ+1, app.questions.length);
+    cardHolders.on('click',showCard);
+    app.board.find('.question').hide()
   },
   getBoardScore: function(card){
 	
@@ -194,7 +195,6 @@ var app = {
     app.board.find('#awardTeam1points'  ).on('click', app.awardPoints)
     app.board.find('#awardTeam2points'  ).on('click', app.awardPoints)
 	  window.opener.game_window_init_done();
-
   }  
 }
 	function teamPointChange(){		

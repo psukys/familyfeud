@@ -19,15 +19,29 @@ var currentQ = 0;
 				clearInterval(interval);
 				game.document.getElementById("counter").innerHTML = "Pradžia";
 				game.document.getElementById("counter").style.display = "none";	
-				game.document.body.setAttribute("style", "background: linear-gradient(to bottom, #a7cfdf -50%, #580e12 100%);");
+				game.document.body.setAttribute("style", "background: #1B75BB");
 				game.app.init();
-				
 			}
 		}, 500);	
 		
 		
 	}
 	
+	function show_question(){
+		game.app.board.find('.question').show()
+	}
+
+	function toggle_screensaver() {
+		if (game.document.getElementById("gameBoardId").style.display == 'none') {
+			game.document.getElementById("gameBoardId").style.display = ''
+			game.document.getElementById("welcomePageInfo").style.display = "none";
+		} else {
+			game.document.getElementById("gameBoardId").style.display = 'none'
+			game.document.getElementById("welcomePageInfo").style.display = "";
+			
+		}
+	}
+
 	function finish_game(){
 		game.document.getElementById("welcomePageInfo").innerHTML = "Pabaiga";
 		game.document.getElementById("welcomePageInfo").style.display = "";
@@ -76,10 +90,20 @@ var currentQ = 0;
 			game.document.getElementById("missTeam2_"+ (i+1)).style.visibility = "visible";
 		}
 	}
+
+	function clearMissPoints() {
+		for (i = 0; i < 3; i++) { 
+			game.document.getElementById("missTeam1_"+ (i+1)).style.visibility = "hidden";
+		}
+		for (i = 0; i < 3; i++) { 
+			game.document.getElementById("missTeam2_"+ (i+1)).style.visibility = "hidden";
+		}
+	}
 	
 	function deleteMissPoint(){
 		missPointTeam1 = 0;
 		missPointTeam2 = 0;
+		clearMissPoints();
 	}
 	
 	function showMissPoint(team){
@@ -90,17 +114,18 @@ var currentQ = 0;
 		else if (team == "2") {
 			if (missPointTeam2 < maxMiss) missPointTeam2++;
 			document.getElementById("misspoint2").innerHTML = missPointTeam2;
-		}	
+		}
+		printMissPoint();
 		play_sound('ff-strike.wav');
 	}
 	
 	function nextQuestion(){
+		deleteMissPoint();
 		var table = document.getElementById("tableAnswers");
 		for(var i = table.rows.length - 1; i > 0; i--)
 		{
 			table.deleteRow(i);
 		}
-		deleteMissPoint();
 		cleanTeams();
 		game.app.changeQuestion();
 		
